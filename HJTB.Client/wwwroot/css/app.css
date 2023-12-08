@@ -9,7 +9,7 @@ html, body {
     font-family: IRANSans, Tahoma, Arial;
     line-height: 22px;
     margin: 0;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 h1:focus {
@@ -70,3 +70,6 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+.grid-cell{
+    direction:rtl;
+}

@@ -42,6 +42,21 @@ namespace Data
 				return _applicationRepository;
 			}
 		}
-		 
-	}
+
+        private IProductRepository _productRepository;
+
+        public IProductRepository ProductRepository
+        {
+            get
+            {
+                if (_productRepository == null)
+                {
+                    _productRepository =
+                        new ProductRepository(DatabaseContext);
+                }
+
+                return _productRepository;
+            }
+        }
+    }
 }

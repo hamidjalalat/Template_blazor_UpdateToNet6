@@ -11,7 +11,7 @@ namespace HJTB.Server.AutoMapperProfiles
         public ApplicationProfile()
         {
             CreateMap<Models.Application, CreateViewModel>();
-            CreateMap<CreateViewModel, Models.Application>();
+            CreateMap<CreateViewModel, Models.Application>().ForMember(m => m.Id, o => o.MapFrom(s => Guid.NewGuid()));
         }
 
     }

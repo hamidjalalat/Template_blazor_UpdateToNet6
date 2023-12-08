@@ -1,0 +1,84 @@
+﻿@page "/DataGride/Crud"
+@page "/DataGride/{GridState}"
+
+@using GridBlazorClientSide.Client.ColumnCollections
+@using Models
+@using Microsoft.Extensions.Primitives
+@using System.Globalization
+@using System.Threading.Tasks
+
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+@inject Services.ApplicationService Service
+
+@if (_task.IsCompleted)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <GridComponent @ref="Component" T="Product" Grid="@_grid"></GridComponent>
+        </div>
+    </div>
+}
+else
+{
+    <p><em>@Resources.DataDictionary.Loading</em></p>
+}
+
+@code
+{
+    private CGrid<Product> _grid;
+    private Task _task;
+    private GridComponent<Product> Component;
+
+    [Parameter]
+    public string GridState { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var locale = CultureInfo.CurrentCulture;
+
+        Action<IGridColumnCollection<Product>> columns = c =>
+            ColumnCollections.ProductColumnsWithEdit(c, new List<Func<object, Task>>(),
+                "editrows");
+
+        var query = new QueryDictionary<StringValues>();
+
+        if (!string.IsNullOrWhiteSpace(GridState))
+        {
+            try
+            {
+                query = StringExtensions.GetQuery(GridState);
+            }
+            catch (Exception)
+            {
+                //insert to log( do nothing, GridState was not a valid state)
+            }
+        }
+
+        string url = Service.BaseUrl + "/Products/OrderColumnsWithEdit";
+
+        var client = new GridClient<Product>(HttpClient, url, query, false, "Products", columns, locale)
+            .Sortable()
+            .Filterable()
+            .Searchable(true, false, false)
+            .SetStriped(true)
+            .WithMultipleFilters()
+            .WithGridItemsCount()
+            .ClearFiltersButton(true)
+            .Searchable(true, false, false)
+            .SetExcelExport(true, true, "Product");
+
+        _grid = client.Grid;
+
+        _task = client.UpdateGrid();
+
+        await _task;
+    }
+
+    private void ClickHandlerToEdit(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo($"/Products/Create");
+    }
+
+}
+

@@ -1,0 +1,8 @@
+﻿@using GridBlazor.Resources
+@typeparam T
+@if (GridDeleteComponent._buttonsVisibility == 0)
+{
+    <button type="button" id="delete"  class="btn btn-danger btn-md" @onclick="() => GridDeleteComponent.DeleteItem()">@Strings.Delete</button>
+    <button type="button" id="back" class="btn btn-primary btn-md" @onclick="() => GridDeleteComponent.BackButtonClicked()">@Strings.Back</button>
+}
+      

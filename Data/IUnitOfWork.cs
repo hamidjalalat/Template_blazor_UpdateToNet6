@@ -4,5 +4,7 @@
     {
         IApplicationRepository ApplicationRepository { get; }
 
+        IProductRepository ProductRepository { get; }
+
     }
 }

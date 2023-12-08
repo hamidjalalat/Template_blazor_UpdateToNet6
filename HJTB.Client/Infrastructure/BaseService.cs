@@ -25,7 +25,7 @@ namespace Infrastructure
 
 		protected abstract string GetApiUrl();
 
-		protected string BaseUrl { get; set; }
+		public string BaseUrl { get; set; }
 
 		protected string RequestUri { get; set; }
 

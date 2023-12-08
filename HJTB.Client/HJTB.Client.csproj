@@ -1,11 +1,28 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\gridblazor-bootstrap3.css" />
+    <Content Remove="wwwroot\css\gridblazor-bootstrap3.min.css" />
+    <Content Remove="wwwroot\css\gridblazor.css" />
+    <Content Remove="wwwroot\css\gridblazor.min.css" />
+    <Content Remove="wwwroot\gridblazor.js" />
+    <Content Remove="wwwroot\gridblazor.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\gridblazor-bootstrap3.css" />
+    <None Include="wwwroot\css\gridblazor-bootstrap3.min.css" />
+    <None Include="wwwroot\css\gridblazor.css" />
+    <None Include="wwwroot\css\gridblazor.min.css" />
+    <None Include="wwwroot\gridblazor.js" />
+    <None Include="wwwroot\gridblazor.min.js" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.14" />
@@ -13,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GridBlazor\GridBlazor.csproj" />
     <ProjectReference Include="..\Hjx\Hjx.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\Resources\Resources.csproj" />

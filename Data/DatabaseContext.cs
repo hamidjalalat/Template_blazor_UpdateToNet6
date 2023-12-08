@@ -44,8 +44,9 @@ namespace Data
 
 		
 		public DbSet<Application> Applications { get; set; }
+        public DbSet<Product> Product { get; set; }
 
-		protected override void OnModelCreating
+        protected override void OnModelCreating
 			(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);

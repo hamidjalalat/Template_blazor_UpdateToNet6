@@ -162,6 +162,9 @@
   <data name="ExpireDateTime" xml:space="preserve">
     <value>Expire Date Time</value>
   </data>
+  <data name="ff" xml:space="preserve">
+    <value>ff</value>
+  </data>
   <data name="FullName" xml:space="preserve">
     <value>Full Name</value>
   </data>
@@ -197,6 +200,9 @@
   </data>
   <data name="IsVerified" xml:space="preserve">
     <value>Verified</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>در حال بار گذاری</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>

@@ -7,9 +7,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\HJTB.Client\HJTB.Client.csproj" />
     <ProjectReference Include="..\Hjx\Hjx.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\ViewModels\ViewModels.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GridMvc\" />
   </ItemGroup>
 
 </Project>

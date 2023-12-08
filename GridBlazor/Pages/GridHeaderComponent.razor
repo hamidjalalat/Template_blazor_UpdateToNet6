@@ -1,0 +1,84 @@
+﻿@using GridBlazor.Resources
+@using GridShared.Sorting
+
+@typeparam T
+
+<th class="@_cssClass" style="@_cssStyles">
+    <div class="grid-header-group">
+        @if (Column.HeaderCheckbox)
+        {
+            <div class="grid-header-checkbox">
+                @if (_allChecked == null || _showAllChecked == false)
+                {
+                    <input class="grid-header-checkbox-input" type='checkbox' @onchange="CheckboxChangeHandler" @onclick:stopPropagation>
+                    <span class="null-checkbox"></span>
+                }
+                else
+                {
+                    <input type='checkbox' checked="@_allChecked" @onchange="CheckboxChangeHandler" @onclick:stopPropagation>
+                }
+            </div>
+        }
+        @if (Column.ParentGrid.ExtSortingEnabled)
+        {
+            <div class="grid-extsort-draggable @_cssSortingClass" draggable="true" data-column="@Column.Name" @ondragstart="() => HandleDragStart()" @onmouseover="DisplayTooltip" @onmouseout="HideTooltip">
+                @if (Column.SortEnabled)
+                {
+                    if (Column.IsSorted)
+                    {
+                        <button type="button" @onclick="TitleButtonClicked" data-column="@Column.Name" data-sorted="@(Column.Direction == GridSortDirection.Ascending ? "asc" : "desc")">@Column.Title</button>
+                    }
+                    else
+                    {
+                        <button type="button" @onclick="TitleButtonClicked" data-column="@Column.Name">@Column.Title</button>
+                    }
+                }
+                else
+                {
+                    <span data-column="@Column.Name">@Column.Title</span>
+                }
+                @if (Column.IsSorted)
+                {
+                    <span class="grid-sort-arrow"></span>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="@_cssSortingClass" @onmouseover="DisplayTooltip" @onmouseout="HideTooltip">
+                @if (Column.SortEnabled)
+                {
+                    if (Column.IsSorted)
+                    {
+                        <button type="button" @onclick="TitleButtonClicked" data-column="@Column.Name" data-sorted="@(Column.Direction == GridSortDirection.Ascending ? "asc" : "desc")">@Column.Title</button>
+                    }
+                    else
+                    {
+                        <button type="button" @onclick="TitleButtonClicked" data-column="@Column.Name">@Column.Title</button>
+                    }
+                }
+                else
+                {
+                    <span data-column="@Column.Name">@Column.Title</span>
+                }
+                @if (Column.IsSorted)
+                {
+                    <span class="grid-sort-arrow"></span>
+                }
+            </div>
+        }
+        @if (!Column.HeaderCheckbox && Column.FilterEnabled)
+        {
+            <div class="grid-filter" data-type="@Column.FilterWidgetTypeName" data-name="@Column.Name" data-widgetdata="@JsonSerializer.Serialize(Column.FilterWidgetData)" data-filterdata="@JsonSerializer.Serialize(_filterSettings)" data-url="@_url" data-clearinitfilter="@_clearInitFilter.ToString()">
+                <span class="@_cssFilterClass" title="@Strings.FilterButtonTooltipText" @onclick="FilterIconClicked" @onclick:stopPropagation></span>
+                @FilterWidgetRender
+            </div>
+        }
+    </div>
+    @if (!string.IsNullOrWhiteSpace(Column.TooltipValue))
+    {
+        <HeaderTooltipComponent T="@T" Value="@Column.TooltipValue" Visible="@_isTooltipVisible"></HeaderTooltipComponent>
+    }
+</th>
+
+
