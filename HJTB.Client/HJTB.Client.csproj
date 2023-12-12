@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Components\CardSkeletone.razor" />
     <Content Remove="wwwroot\css\gridblazor-bootstrap3.css" />
     <Content Remove="wwwroot\css\gridblazor-bootstrap3.min.css" />
     <Content Remove="wwwroot\css\gridblazor.css" />
@@ -16,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Components\CardSkeletone.razor" />
     <None Include="wwwroot\css\gridblazor-bootstrap3.css" />
     <None Include="wwwroot\css\gridblazor-bootstrap3.min.css" />
     <None Include="wwwroot\css\gridblazor.css" />
@@ -39,6 +41,14 @@
 
   <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\CardSkeletone.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\CardSkeletone.razor" />
   </ItemGroup>
 
 </Project>

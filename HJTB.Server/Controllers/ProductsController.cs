@@ -38,8 +38,5 @@ namespace PaydarShop.Server.Controllers
             return Ok(items);
         }
 
-       
-
-
     }
 }

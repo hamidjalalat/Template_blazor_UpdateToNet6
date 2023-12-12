@@ -61,6 +61,7 @@ namespace Dtx.Security.Server.Controllers
                 result.IsSuccessful = false;
 
                 result.AddErrorMessage(ex.Message);
+                
 
                 return Ok(value: result);
             }
@@ -128,8 +129,7 @@ namespace Dtx.Security.Server.Controllers
             Result result = new Result();
             try
             {
-                var resultDelete =
-                 await UnitOfWork.ApplicationRepository.DeleteByIdAsync(id);
+                var resultDelete = await UnitOfWork.ApplicationRepository.DeleteByIdAsync(id);
 
                 await UnitOfWork.SaveAsync();
 

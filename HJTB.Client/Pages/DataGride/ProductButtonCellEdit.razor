@@ -1,11 +1,11 @@
 ﻿@using Models
 @using GridShared.Columns
+
 @implements ICustomGridComponent<Product>
+
 @inject NavigationManager NavigationManager
 
-@*<button class='btn btn-sm btn-primary' @onclick="MyClickHandler">ویرایش</button>*@
 <button class="grid-button grid-button-header-edit btn btn-sm btn-primary" title="ویرایش"  @onclick="MyClickHandler" type="button"></button>
-
 
 @code { [Parameter]
     public Product Item { get; set; }
