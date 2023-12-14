@@ -1,0 +1,39 @@
+﻿
+@using BlazorBootstrap;
+<div>
+    <Toasts class="p-3" Messages="messages" AutoHide="true" StackLength="3" Placement="ToastsPlacement.BottomRight" />
+</div>
+@code {
+    [Parameter]
+    public string HelpText { get; set; }
+
+    [Parameter]
+    public string MessageBody { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    public string Caption { get; set; }
+
+
+    List<ToastMessage> messages = new List<ToastMessage>();
+
+ 
+
+    public async void ShowMessage()
+    {
+        messages.Add(CreateToastMessage(ToastType.Primary));
+
+    }
+
+    private ToastMessage CreateToastMessage(ToastType toastType)
+    { 
+        return new ToastMessage
+        {
+            Type = toastType,
+            Title = Title,
+            HelpText = $"{DateTime.Now}",
+            Message = MessageBody,
+        };
+    }
+}

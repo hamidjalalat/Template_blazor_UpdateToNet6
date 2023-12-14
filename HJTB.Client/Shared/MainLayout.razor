@@ -1,17 +1,47 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
+    <div class="@SidebarToggle" @onmouseover="MouseIn" @onmouseout="MouseOut">
+        <NavMenu IsHidden="@MainHidden" />
     </div>
 
     <main>
         <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+            <a href="" >
+            <img src="css/images/hjblazorframwork.png"  width="200px" />
+            </a>
         </div>
-
+        <Preload LoadingText="Loading..." />
         <article class="content px-4">
             @Body
         </article>
     </main>
 </div>
+
+@code {
+
+
+    public string SidebarToggle = "sidebar";
+    private string MainHidden;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+
+        MainHidden = "IsHidden";
+    }
+
+
+    public void MouseIn(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
+    {
+        SidebarToggle = "sidebarFixed";
+        MainHidden = "";
+    }
+    public void MouseOut(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
+    {
+        SidebarToggle = "sidebar";
+        MainHidden = "IsHidden";
+    }
+   
+}
+

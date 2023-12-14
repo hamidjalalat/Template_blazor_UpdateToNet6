@@ -205,7 +205,7 @@ namespace Infrastructure
 			return default;
 		}
 
-        protected virtual async Task<O>DeleteAsync<O>(string Id)
+        protected virtual async Task<O> DeleteAsync<O>(string Id)
         {
             HttpResponseMessage response = null;
 

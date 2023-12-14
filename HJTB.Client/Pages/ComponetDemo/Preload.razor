@@ -1,0 +1,22 @@
+﻿@page "/ComponetDemo/Preload"
+
+<Button Color="ButtonColor.Primary" @onclick="ShowLoadingDataAsync">لطفا منتظر بمانید...</Button>
+<Button Color="ButtonColor.Dark" @onclick="ShowSavingDataAsync">در حال ذخیره سازی...</Button>
+
+@code {
+    [Inject] protected PreloadService PreloadService { get; set; }
+
+    private async Task ShowLoadingDataAsync()
+    {
+        PreloadService.Show(SpinnerColor.Light, "لطفا منتظر بمانید...");
+        await Task.Delay(3000); // call the service/api
+        PreloadService.Hide();
+    }
+
+    private async Task ShowSavingDataAsync()
+    {
+        PreloadService.Show(SpinnerColor.Light, "در حال ذخیره سازی...");
+        await Task.Delay(3000); // call the service/api
+        PreloadService.Hide();
+    }
+}
