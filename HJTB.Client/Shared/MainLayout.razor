@@ -8,7 +8,7 @@
     <main>
         <div class="top-row px-4">
             <a href="" >
-            <img src="css/images/hjblazorframwork.png"  width="200px" />
+                <img src="css/images/hjblazorframwork.png" style="width:200px"  />
             </a>
         </div>
         <Preload LoadingText="Loading..." />
@@ -19,24 +19,20 @@
 </div>
 
 @code {
-
-
     public string SidebarToggle = "sidebar";
     private string MainHidden;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-
-
         MainHidden = "IsHidden";
     }
-
 
     public void MouseIn(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
     {
         SidebarToggle = "sidebarFixed";
         MainHidden = "";
     }
+
     public void MouseOut(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
     {
         SidebarToggle = "sidebar";

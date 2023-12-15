@@ -18,9 +18,9 @@
 
     List<ToastMessage> messages = new List<ToastMessage>();
 
- 
 
-    public async void ShowMessage()
+
+    public  void ShowMessage()
     {
         messages.Add(CreateToastMessage(ToastType.Primary));
 
@@ -35,5 +35,10 @@
             HelpText = $"{DateTime.Now}",
             Message = MessageBody,
         };
+    }
+    protected override void OnParametersSet()
+    {
+        ShowMessage();
+        base.OnParametersSet();
     }
 }

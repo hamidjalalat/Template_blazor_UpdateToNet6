@@ -39,11 +39,12 @@
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">ذخیره</button>
-            &nbsp;  &nbsp;  <span style="color:blue">@Message</span>
 
         </div>
     </div>
 </EditForm>
+<Toasts class="p-3" Messages="messages" AutoHide="true" StackLength="3" Placement="ToastsPlacement.BottomRight" />
+
 @code {
 
     public CreateViewModel Model = new CreateViewModel();
@@ -56,13 +57,42 @@
 
         if (Result.IsSuccessful)
         {
-            Message = "عملیات درج با موفقیت انجام شد";
+            ShowMessageSucc(ToastType.Primary);
         }
         else
         {
-             Message = "عملیات درج با شکست مواجه شد";
+            ShowMessageFail(ToastType.Danger);
         }
     
+    }
+    List<ToastMessage> messages = new List<ToastMessage>();
+
+    private void ShowMessageSucc(ToastType toastType) 
+    {
+        messages.Add(CreateToastMessageSucc(toastType));
+    }
+
+    private ToastMessage CreateToastMessageSucc(ToastType toastType)
+    {
+    return new ToastMessage
+        {
+            Type = toastType,
+            Title = "عنوان پیام",
+            HelpText = $"{DateTime.Now}",
+            Message = "عملیات درج با موفقیت انجام شد",
+        };
+    }
+    private void ShowMessageFail(ToastType toastType) => messages.Add(CreateToastMessageFail(toastType));
+
+    private ToastMessage CreateToastMessageFail(ToastType toastType)
+    {
+        return new ToastMessage
+        {
+            Type = toastType,
+            Title = "عنوان پیام",
+            HelpText = $"{DateTime.Now}",
+            Message = "عملیات درج با شکست مواجه شد",
+        };
     }
 }
 

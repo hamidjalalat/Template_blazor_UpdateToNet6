@@ -1,4 +1,5 @@
 using AutoMapper;
+using HJTB.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -47,17 +48,17 @@ namespace HJTB.Server
 					});
 			});
 
-			//services.AddControllers();
+            //services.AddControllers();
 
-			services.AddControllers().AddJsonOptions(options =>
+            services.AddControllers().AddJsonOptions(options =>
 			{
 				options.JsonSerializerOptions.MaxDepth = 5;
 				options.JsonSerializerOptions.PropertyNamingPolicy = null;
 			});
 
-			
+            services.AddSwaggerGen();
 
-			services.AddTransient<Data.IUnitOfWork, Data.UnitOfWork>(sp =>
+            services.AddTransient<Data.IUnitOfWork, Data.UnitOfWork>(sp =>
 			{
 				Data.Tools.Options options =
 					new Data.Tools.Options
@@ -83,9 +84,17 @@ namespace HJTB.Server
 			(IApplicationBuilder app,
 			IWebHostEnvironment env)
 		{
-			//app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
-			app.UseCors(policyName: AdminCorsPolicy);
+            app.UseSwagger();
+
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                options.RoutePrefix = string.Empty;
+            });
+
+            app.UseCors(policyName: AdminCorsPolicy);
 
 			app.UseRouting();
 

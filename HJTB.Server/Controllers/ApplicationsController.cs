@@ -86,6 +86,7 @@ namespace Dtx.Security.Server.Controllers
             catch (Exception ex)
             {
                 result.IsSuccessful = false;
+                result.AddErrorMessage (ex.Message);
                 return Ok(value: result);
             }
         }
@@ -117,7 +118,7 @@ namespace Dtx.Security.Server.Controllers
             {
 
                 result.IsSuccessful = false;
-                result.AddInformationMessage("Error");
+                result.AddInformationMessage(ex.Message);
 
                 return Ok(result);
             }
@@ -140,7 +141,7 @@ namespace Dtx.Security.Server.Controllers
             catch (Exception ex)
             {
                 result.IsSuccessful = false;
-
+                result.AddInformationMessage(ex.Message);
                 return result;
             }
         }

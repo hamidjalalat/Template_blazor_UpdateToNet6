@@ -8,56 +8,42 @@
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
     <nav class="flex-column">
         <div class="nav-item px-3">
-           
             @if (ClassArrowHistory)
             {
                 <NavLink class="nav-link" @onclick="()=>ArrowHistory()">
                     <span class="oi oi-caret-bottom"> </span>
-
                     <span class="@IsHidden">Test CRUD</span>
-
                 </NavLink>
             }
             else
             {
                 <NavLink class="nav-link" @onclick="()=>ArrowHistory()">
                     <span class="oi oi-caret-left"> </span>
-
                     <span class="@IsHidden">Test CRUD</span>
-
                 </NavLink>
             }
             @if (expandSubNavHistory)
             {
                 <NavLink class="nav-link" href="Application/Create" Match="NavLinkMatch.All">
-                    &nbsp;&nbsp;&nbsp;&nbsp; <span class="oi oi-cart"> </span>
-
+                    &nbsp;&nbsp;&nbsp;&nbsp; <span class="oi oi-file"> </span>
                     <span class="@IsHidden"> Create</span>
-
                 </NavLink>
+
                 <NavLink class="nav-link" href="Application/GetAll" Match="NavLinkMatch.All">
                     &nbsp;&nbsp;&nbsp;&nbsp; <span class="oi oi-envelope-closed"> </span>
-
                     <span class="@IsHidden">Fetch data</span>
-
                 </NavLink>
-               
             }
           
             <NavLink class="nav-link" href="DataGride/crud" Match="NavLinkMatch.All">
                 <span class="oi oi-file"> </span>
-
                 <span class="@IsHidden">DataGride</span>
-
             </NavLink>
+
             <NavLink class="nav-link" href="Demo" Match="NavLinkMatch.All">
                 <span class="oi oi-person"> </span>
-
                 <span class="@IsHidden">Demo</span>
-
             </NavLink>
-
-
         </div>
     </nav>
 </div>
@@ -78,9 +64,7 @@
     [Parameter]
     public string IsHidden { get; set; } = "IsHidden";
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-  
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
     {
