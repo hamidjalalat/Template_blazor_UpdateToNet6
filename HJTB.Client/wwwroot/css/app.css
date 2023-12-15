@@ -259,3 +259,12 @@ a, .btn-link {
     font-weight: bold;
     inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
 }
+.grid-header-title {
+    text-align: right;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
